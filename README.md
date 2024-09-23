@@ -23,3 +23,14 @@ on macOS:
 ```
 brew install sqlite
 ```
+
+You are welcome for suggestions about querying authors without books
+I believe there is better way than: 
+
+> authors_without_books = session.query(Author).outerjoin(Book).filter(Book.id == None).all()
+
+I was trying to come up with solution in alchemy orm analogue to:
+> SELECT * FROM authors a WHERE (SELECT COUNT(*) FROM books b WHERE b.author_id = a.id) = 0
+
+but querying with join also works
+
